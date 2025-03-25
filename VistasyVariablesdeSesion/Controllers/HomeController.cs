@@ -71,6 +71,12 @@ namespace VistasyVariablesdeSesion.Controllers
             return View();
         }
 
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Autenticar");
+        }
+
         public IActionResult Privacy()
         {
             return View();

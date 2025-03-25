@@ -6,5 +6,45 @@
     <h1 class="display-4">Welcome <strong>@ViewBag.nombre</strong></h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <h2>Tipo de usuario: <strong>@ViewData["tipoUsuario"]</strong></h2>
+</div>
 
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3>Acciones disponibles</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="#" class="text-dark">Mi perfil</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="text-dark">Mis configuraciones</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a asp-controller="Home" asp-action="Privacy" class="text-dark">Política de privacidad</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h3>Estadísticas</h3>
+            </div>
+            <div class="card-body">
+                <p>Último acceso: @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</p>
+                <p>Sesión iniciada como: @ViewData["tipoUsuario"]</p>
+                <hr />
+                <p>
+                    <a asp-controller="Home" asp-action="CerrarSesion" class="btn btn-danger">
+                        Cerrar sesión
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
