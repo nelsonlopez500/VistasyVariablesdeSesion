@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VistasyVariablesdeSesion.Models;
+using VistasyVariablesdeSesion.Servicios;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VistasyVariablesdeSesion.Controllers
@@ -18,6 +19,7 @@ namespace VistasyVariablesdeSesion.Controllers
             _context = context;
         }
 
+        [Autenticacion]
         public IActionResult Index()
         {
             var usuarioId = HttpContext.Session.GetInt32("UsuarioId");
