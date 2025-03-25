@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using VistasyVariablesdeSesion.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VistasyVariablesdeSesion.Controllers
 {
@@ -17,10 +18,15 @@ namespace VistasyVariablesdeSesion.Controllers
         {
             var usuarioId = HttpContext.Session.GetInt32("UsuarioId");
             var tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
+            var nombreUsuario = HttpContext.Session.GetString("Nombre");
+
             if (usuarioId == null)
             {
                 return RedirectToAction("Autenticar");
             }
+
+            ViewBag.nombre = nombreUsuario;
+            ViewData["tipoUsuario"] = tipoUsuario;
 
             return View();
         }
