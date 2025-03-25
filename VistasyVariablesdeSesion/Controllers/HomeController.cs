@@ -15,6 +15,13 @@ namespace VistasyVariablesdeSesion.Controllers
 
         public IActionResult Index()
         {
+            var usuarioId = HttpContext.Session.GetInt32("UsuarioId");
+            var tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
+            if (usuarioId == null)
+            {
+                return RedirectToAction("Autenticar");
+            }
+
             return View();
         }
 
