@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Agregar servicios de autorización
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 // Configuración para almacenar sesiones en memoria
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -18,7 +22,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var app = WebApplication.Create(args);
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -33,6 +37,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Asegúrate de que useAuthentication esté antes de useAuthorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 // Habilitar el uso de sesiones en la aplicación
